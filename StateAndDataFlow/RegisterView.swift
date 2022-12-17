@@ -17,7 +17,7 @@ struct RegisterView: View {
                 TextField("Enter your name...", text: $name)
                     .multilineTextAlignment(.center)
                 Text("\(name.count)")
-                    .foregroundColor(name.count < 3 ? .red : .green)
+                    .foregroundColor(name.count >= 3 ? .green : .red)
             }.padding()
             Button(action: registerUser) {
                 HStack {
@@ -25,7 +25,7 @@ struct RegisterView: View {
                     Text("OK")
                 }
             }
-            .disabled(name.count < 3 ? true : false)
+            .disabled(name.count >= 3 ? false : true)
         }
     }
     
