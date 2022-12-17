@@ -9,5 +9,5 @@ import Foundation
 
 class UserManager: ObservableObject {
     @Published var isRegister = false
-    var name = ""
+    var name = DataManager.shared.fetchName()
 }

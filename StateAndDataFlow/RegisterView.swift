@@ -30,6 +30,7 @@ struct RegisterView: View {
     }
     
     private func registerUser() {
+            DataManager.shared.save(name: name)
             userManager.name = name
             userManager.isRegister.toggle()
     }

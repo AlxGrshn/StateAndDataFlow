@@ -29,7 +29,7 @@ struct ContentView: View {
             Spacer()
             
             ButtonView(title: "Logout", color: .red) {
-                userManager.name = ""
+//                DataManager.shared.deleteName(at: userManager.name)
                 userManager.isRegister.toggle()
             }
         
