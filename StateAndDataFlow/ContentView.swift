@@ -29,14 +29,11 @@ struct ContentView: View {
             Spacer()
             
             ButtonView(title: "Logout", color: .red) {
-                logOut()
+                userManager.name = ""
+                userManager.isRegister.toggle()
             }
         
         }.padding()
-    }
-    
-    private func logOut() {
-
     }
 }
 
