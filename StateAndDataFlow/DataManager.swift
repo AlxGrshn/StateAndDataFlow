@@ -10,25 +10,23 @@ import SwiftUI
 class DataManager {
     static let shared = DataManager()
     
-    private let defaults = UserDefaults.standard
-    private let nameKey = "userName"
-    private let isRegisterKey = false
+    @AppStorage("user") private var userData: Data?
     
-    func save (name: String) {
-        let name = fetchName()
-        defaults.set(name, forKey: nameKey)
+    func save(user: User) {
+        userData = try? JSONEncoder().encode(user)
     }
     
-    func fetchName () -> String {
-        if let userName = defaults.value(forKey: nameKey) as? String {
-            return userName
-        }
-        return ""
+    func fetchUser() -> User {
+        guard let userData else { return User() }
+        let user = try? JSONDecoder().decode(User.self, from: userData)
+        guard let user = user else { return User() }
+        return user
     }
-    func deleteName (at index: Int) {
-        var name = fetchName()
-        name = ""
-        defaults.set(name, forKey: nameKey)
+    
+    func clear(userManager: UserManager) {
+        userManager.user.isRegistered = false
+        userManager.user.name = ""
+        userData = nil
     }
     
     private init() {}
